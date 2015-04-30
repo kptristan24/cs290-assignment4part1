@@ -1,0 +1,3 @@
+WORK LOG
+
+WEDNESDAY: Added all the Get forms and URL for Multtable
