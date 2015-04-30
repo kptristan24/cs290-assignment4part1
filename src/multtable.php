@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -45,34 +46,93 @@
 		</div>
 		
 		<?php
-			//Checks if the args have been supplied
+			$tablecheck = 0;
+			$fail = 0;
+			//Checks if the args have been supplied correctly
 			if(!($_GET["max-multiplicand"])){
 				echo 'You haven\'t given me any args! Please use the form below.<br><br>';
 			}
 			else{
-				echo 'You\'ve supplied args in the URL! Submit the form below to change them.<br><br>';
+				if(!(is_numeric($_GET["max-multiplicand"]))){
+					echo 'Max Multiplicand is not an integer. Please try again.<br><br>';
+					$fail = 1;
+				}
+				if(!(is_numeric($_GET["min-multiplicand"]))){
+					echo 'Max Multiplicand is not an integer. Please try again.<br><br>';
+					$fail = 1;
+				}
+				if(!(is_numeric($_GET["max-multiplier"]))){
+					echo 'Max Multiplier is not an integer. Please try again.<br><br>';
+					$fail = 1;
+				}
+				if(!(is_numeric($_GET["min-multiplier"]))){
+					echo 'Min Multiplier is not an integer. Please try again.<br><br>';
+					$fail = 1;
+				}
+				if(($_GET["max-multiplicand"]) <= ($_GET["min-multiplicand"])){
+					$fail = 1;
+					echo 'Min was larger that max multiplicand! Please try again.<br><br>';
+				}
+				if(($_GET["max-multiplier"]) <= ($_GET["min-multiplier"])){
+					$fail = 1;
+					echo 'Min was larger that max multiplier! Please try again.<br><br>';
+				}
+				if($fail != 1){
+					echo 'You\'ve supplied args in the URL! Submit the form below to change them.<br><br>';
+					$tablecheck = 1;
+				}
 			}
+			//echo 'Returns: ' . is_numeric($_GET["max-multiplicand"]);
 		?>
 		
 		<form action="multtable.php" method="get">
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">Max Multiplicand</span>
-				<input type="text" name="max-multiplicand" class="form-control" placeholder="2, 4, 6..." aria-describedby="basic-addon1">
+				<input type="text" name="max-multiplicand" class="form-control" placeholder="2, 4, 6..." aria-describedby="basic-addon1" required>
 		</div><br>
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">Min Multiplicand</span>
-				<input type="text" name="min-multiplicand" class="form-control" placeholder="2, 4, 6..." aria-describedby="basic-addon1">
+				<input type="text" name="min-multiplicand" class="form-control" placeholder="2, 4, 6..." aria-describedby="basic-addon1" required>
 		</div><br>
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">Max Multiplier</span>
-				<input type="text" name="max-multiplier" class="form-control" placeholder="2, 4, 6..." aria-describedby="basic-addon1">
+				<input type="text" name="max-multiplier" class="form-control" placeholder="2, 4, 6..." aria-describedby="basic-addon1" required>
 		</div><br>
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">Min Multiplier</span>
-				<input type="text" name="min-multiplier" class="form-control" placeholder="2, 4, 6..." aria-describedby="basic-addon1">
+				<input type="text" name="min-multiplier" class="form-control" placeholder="2, 4, 6..." aria-describedby="basic-addon1" required>
 		</div><br>
 		<button type="submit" class="btn btn-default">Submit</button>
-		</form>
+		</form><br><br>
+		
+		<?php
+		if($tablecheck == 1){
+			$rows = ($_GET["max-multiplicand"] - $_GET["min-multiplicand"]) + 2;
+			$columns = ($_GET["max-multiplier"] - $_GET["min-multiplier"]) + 2;
+			
+			$width = $_GET["max-multiplicand"];
+			$height = $_GET["max-multiplier"];
+
+			$table = '<table style="width:100%" class="table table-bordered">';
+			for($r = 1; $r <= $height; $r++){
+				$table .= '<tr>';
+				for($c = 1; $c <= $width; $c++){
+					if($c == 1 && $r == 1){
+						$table .= "<td>  </td>";
+						
+					}else{
+						$table .= "<td>" . ($r * $c) . "</td>";
+					}
+				}
+				$table .= '</tr>';
+			}
+			$table .= '</table>';
+			echo $table;
+		}
+			
+			
+		
+		?>
 		
 		
 
