@@ -12,7 +12,7 @@
 
     <title>Multiplication Table</title>
     <link href="../../../libraries/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="starter-template.css" type="text/css" rel="stylesheet">
+    <link href="../starter-template.css" type="text/css" rel="stylesheet">
 
   </head>
 
