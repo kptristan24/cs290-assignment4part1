@@ -12,7 +12,7 @@
 
     <title>Loopback GETPOST</title>
     <link href="../../../libraries/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="starter-template.css" type="text/css" rel="stylesheet">
+    <link href="../starter-template.css" type="text/css" rel="stylesheet">
 
   </head>
 
@@ -57,16 +57,37 @@
 		
 	<?php
 	
-	echo json_encode($_GET);
-	echo '<br><br>';
-	echo json_encode($_POST);
-	
-	echo ' <br> <br>';
-	
-	foreach($_POST as $key => $value){
-		echo 'Key: ' . $key . 'Value: ' . $value . '<br />\n';
+	echo '{"Type":"[GET]","parameters":';
+	if($_GET){
+		echo json_encode($_GET) . '}';
+	}else{
+	echo 'null}';
 	}
+	echo '<br><br>';
+	
+	echo '{"Type":"[POST]","parameters":';
+	if($_POST){
+		echo json_encode($_POST) . '}';
+	}else{
+		echo 'null}';
+	}
+	echo '<br><br>';
+
+	/* TESTING PURPOSES ONLY
+	foreach($_POST as $key => $value){
+		echo 'Key: ' . $key . ' Value: ' . $value . '<br />';
+	}
+	
+	echo '<br><br><br>';
+	
+	foreach($_GET as $key => $value){
+		echo 'Key: ' . $key . ' Value: ' . $value . '<br />';
+	}*/
+	
 	?>
+	
+	
+	
     </div>
 
 

@@ -1,3 +1,14 @@
 WORK LOG
 
-WEDNESDAY: Added all the Get forms and URL for Multtable
+Start: Wed, 29 Apr 2015 12:00:25
+End: Wed, 29 Apr 2015 13:20:25
+Tasks: Added all the Get forms and URL for Multtable
+
+Start: Fri, 1 May 2015 09:00:25
+End: Fri, 1 May 2015 12:24:25
+Tasks: Finished multtable and loopback. Did I do it right?
+
+Start: Sun, 3 May 2015 13:00:25
+End: Sun, 3 May 2015 18:13:25
+Tasks: Started and Finished login. Took a while to figure out why session wasn't being destroyed.
+		In the end I needed to just use everything possible to wreck it. Oh well! C'est la vie.
